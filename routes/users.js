@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const { check } = require('express-validator');
-const { userCreate } = require('../controllers/users');
+const { userCreate, updateUser } = require('../controllers/users');
 const { fieldValidate } = require('../helpers/validate');
 const router = Router();
 
@@ -13,6 +13,8 @@ router.post('/new', [
     fieldValidate
 ], userCreate);
 
+
+router.put('/:id', updateUser);
 //router.get('/users', );
 
 module.exports = router;

@@ -1,5 +1,15 @@
-const { request, response } = require('express');
+const { request, response, json } = require('express');
 const User = require('../models/users');
+
+const getUsers = async (req = request, res = response) => {
+    const users = await User.find();
+
+    return res.status(200).json({
+        ok: true,
+        msg: 'Lista de usuarios',
+        users
+    });
+};
 
 const userCreate = async (req = request, res = response) => {
     const { correo, cedula } = req.body;
@@ -72,7 +82,38 @@ const updateUser = async (req = request, res = response) => {
     }
 };
 
+const deleteUser = async (req = request, res = response) => {
+    const userId = req.params.id;
+
+    try {
+        let user = await User.findById(userId);
+
+        if(!user){
+            return res.status(404).json({
+                ok: false,
+                msg: "Usuario no existente"
+            });
+        }
+
+        await User.findByIdAndDelete(userId);
+
+        return res.status(200).json({
+            ok: true,
+            msg: 'Usuario eliminado',
+            user
+        });
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            ok: false,
+            msg: "Error en el servidor"
+        });
+    }
+};
+
 module.exports = {
+    getUsers,
     userCreate,
     updateUser,
+    deleteUser,
 }

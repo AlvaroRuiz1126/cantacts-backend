@@ -13,6 +13,6 @@ router.post('/new', [
     fieldValidate
 ], userCreate);
 
-router.get('/users', );
+//router.get('/users', );
 
 module.exports = router;

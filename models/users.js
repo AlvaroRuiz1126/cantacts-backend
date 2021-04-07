@@ -14,7 +14,7 @@ const UserSchema = new Schema({
         required: true,
         unique: true,
     },
-    email: {
+    correo: {
         type: String,
         required: true,
         unique: true
@@ -23,6 +23,10 @@ const UserSchema = new Schema({
         type: String,
         required: true,
     }
+});
+
+UserSchema.method('toJSON', function(){
+    //console.log(this.toObject());
 });
 
 module.exports = model('Users', UserSchema);

@@ -21,7 +21,7 @@ const userCreate = async (req = request, res = response) => {
         if(email || identification){
             return res.status(400).json({
                 ok: false,
-                msg: 'Usuario existente con el mismo correo o cedula'
+                msg: 'Usuario existente con el mismo correo o cédula'
             });
         }
 
@@ -71,7 +71,7 @@ const updateUser = async (req = request, res = response) => {
 
         return res.status(200).json({
             ok: true,
-            msg: 'Usuaria Actualizado',
+            msg: 'Usuario Actualizado',
             updateUserDB
         });
     } catch (error) {

@@ -1,4 +1,4 @@
-const { request, response, json } = require('express');
+const { request, response } = require('express');
 const User = require('../models/users');
 
 const getUsers = async (req = request, res = response) => {
@@ -30,7 +30,8 @@ const userCreate = async (req = request, res = response) => {
 
         return res.status(200).json({
             ok: true,
-            msg: "Usuario creado"
+            msg: "Usuario creado",
+            user
         });
     } catch (error) {
         console.log(error);

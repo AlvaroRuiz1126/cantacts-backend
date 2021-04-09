@@ -18,10 +18,17 @@ const userCreate = async (req = request, res = response) => {
         let email = await User.findOne({correo});
         let identification = await User.findOne({cedula});
 
-        if(email || identification){
+        if(identification){
             return res.status(400).json({
                 ok: false,
-                msg: 'Usuario existente con el mismo correo o cédula'
+                msg: 'Usuario existente con la misma cédula'
+            });
+        }
+
+        if(email){
+            return res.status(400).json({
+                ok: false,
+                msg: 'Usuario existente con el mismo correo'
             });
         }
 
@@ -60,10 +67,17 @@ const updateUser = async (req = request, res = response) => {
         let email = await User.findOne({correo});
         let identification = await User.findOne({cedula});
 
-        if(email || identification){
+        if(identification){
             return res.status(400).json({
                 ok: false,
-                msg: 'Usuario existente con el mismo correo o cedula'
+                msg: 'Usuario existente la cédula'
+            });
+        }
+
+        if(email){
+            return res.status(400).json({
+                ok: false,
+                msg: 'Usuario existente con el mismo correo'
             });
         }
 
